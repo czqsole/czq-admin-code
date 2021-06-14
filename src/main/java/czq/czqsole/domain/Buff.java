@@ -110,8 +110,4 @@ public class Buff {
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
     }
-
-    public String toString() {
-        return specialOrClass + "[" + buffNum + "] " + abilityName + ": " + abilityDesc;
-    }
 }

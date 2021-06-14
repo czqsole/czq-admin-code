@@ -41,7 +41,7 @@ public class WowAuctionServiceImpl implements WowAuctionService {
     private List<ItemPrice> readFile() {
         List<ItemPrice> result = new ArrayList<>();
 
-        String filePath = "/Users/czqsole/Desktop/TradeSkillMaster.lua";
+        String filePath = "/Applications/World of Warcraft/_classic_/WTF/Account/187610327#1/SavedVariables/TradeSkillMaster.lua";
         try {
             File file = new File(filePath);
             if (file.isFile() && file.exists()) {
@@ -56,7 +56,7 @@ public class WowAuctionServiceImpl implements WowAuctionService {
                         String[] itemList = data.split("i:");
                         for(String item: itemList) {
                             // test print
-                            System.out.println(item);
+//                            System.out.println(item);
                             if(StringUtils.isEmpty(item)) {
                                 continue;
                             }
@@ -69,14 +69,15 @@ public class WowAuctionServiceImpl implements WowAuctionService {
                             int marketValue = Integer.valueOf(itemInfo[2]);
                             int numAuctions = Integer.valueOf(itemInfo[3]);
                             int quantity = Integer.valueOf(itemInfo[4]);
-                            Long lastScan = Long.valueOf(itemInfo[5].replace("\\n", "").replace("\"", ""));
+                            Long lastScan = Long.valueOf(
+                                    itemInfo[5].replace("\\n", "").replace("\"", "").replace("\\r\\n", ""));
                             ItemPrice itemPrice = new ItemPrice();
                             itemPrice.setItemId(itemId);
                             itemPrice.setMinBuyout(minBuyout);
                             itemPrice.setMarketValue(marketValue);
                             itemPrice.setNumAuctions(numAuctions);
                             itemPrice.setQuantity(quantity);
-                            itemPrice.setLastScan(new Date(lastScan));
+                            itemPrice.setLastScan(new Date(lastScan * 1000));
                             itemPriceMapper.insert(itemPrice);
                             result.add(itemPrice);
                         }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="czq.czqsole.dao.BuffMapper">
-  <resultMap id="BaseResultMap" type="czq.czqsole.domain.Buff">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="special_or_class" jdbcType="VARCHAR" property="specialOrClass" />
-    <result column="buff_type" jdbcType="VARCHAR" property="buffType" />
-    <result column="buff_num" jdbcType="INTEGER" property="buffNum" />
-    <result column="ability_name" jdbcType="VARCHAR" property="abilityName" />
-    <result column="ability_type" jdbcType="VARCHAR" property="abilityType" />
-    <result column="ability_action_range" jdbcType="VARCHAR" property="abilityActionRange" />
-    <result column="ability_desc" jdbcType="VARCHAR" property="abilityDesc" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="tag" jdbcType="VARCHAR" property="tag" />
-  </resultMap>
+  <!--<resultMap id="BaseResultMap" type="czq.czqsole.domain.Buff">-->
+    <!--<id column="id" jdbcType="INTEGER" property="id" />-->
+    <!--<result column="special_or_class" jdbcType="VARCHAR" property="specialOrClass" />-->
+    <!--<result column="buff_type" jdbcType="VARCHAR" property="buffType" />-->
+    <!--<result column="buff_num" jdbcType="INTEGER" property="buffNum" />-->
+    <!--<result column="ability_name" jdbcType="VARCHAR" property="abilityName" />-->
+    <!--<result column="ability_type" jdbcType="VARCHAR" property="abilityType" />-->
+    <!--<result column="ability_action_range" jdbcType="VARCHAR" property="abilityActionRange" />-->
+    <!--<result column="ability_desc" jdbcType="VARCHAR" property="abilityDesc" />-->
+    <!--<result column="comment" jdbcType="VARCHAR" property="comment" />-->
+    <!--<result column="remark" jdbcType="VARCHAR" property="remark" />-->
+    <!--<result column="tag" jdbcType="VARCHAR" property="tag" />-->
+  <!--</resultMap>-->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -43,25 +43,6 @@
       </foreach>
     </where>
   </sql>
-
-  <sql id="So_Where_Clause">
-    <where>
-      <if test="specialOrClass != null">
-        and special_or_class = #{specialOrClass}
-      </if>
-      <if test="maxBuffNum != null">
-        and buff_num <![CDATA[ <= ]]> #{maxBuffNum}
-      </if>
-    </where>
-  </sql>
-
-  <select id="selectBySo" parameterType="czq.czqsole.domain.BuffSo" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from buff
-    <include refid="So_Where_Clause" />
-  </select>
-
   <sql id="Update_By_Example_Where_Clause">
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
@@ -322,4 +303,325 @@
       tag = #{tag,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="czq.czqsole.domain.Buff">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="special_or_class" jdbcType="VARCHAR" property="specialOrClass" />
+    <result column="buff_type" jdbcType="VARCHAR" property="buffType" />
+    <result column="buff_num" jdbcType="INTEGER" property="buffNum" />
+    <result column="ability_name" jdbcType="VARCHAR" property="abilityName" />
+    <result column="ability_type" jdbcType="VARCHAR" property="abilityType" />
+    <result column="ability_action_range" jdbcType="VARCHAR" property="abilityActionRange" />
+    <result column="ability_desc" jdbcType="VARCHAR" property="abilityDesc" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+  </resultMap>
+  <!--<sql id="Example_Where_Clause">-->
+    <!--<where>-->
+      <!--<foreach collection="oredCriteria" item="criteria" separator="or">-->
+        <!--<if test="criteria.valid">-->
+          <!--<trim prefix="(" prefixOverrides="and" suffix=")">-->
+            <!--<foreach collection="criteria.criteria" item="criterion">-->
+              <!--<choose>-->
+                <!--<when test="criterion.noValue">-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when test="criterion.singleValue">-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when test="criterion.betweenValue">-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when test="criterion.listValue">-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+
+  <sql id="So_Where_Clause">
+    <where>
+      <if test="specialOrClass != null">
+        and special_or_class = #{specialOrClass}
+      </if>
+      <if test="maxBuffNum != null">
+        and buff_num <![CDATA[ <= ]]> #{maxBuffNum}
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectBySo" parameterType="czq.czqsole.domain.BuffSo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from buff
+    <include refid="So_Where_Clause" />
+  </select>
+
+  <!--<sql id="Update_By_Example_Where_Clause">-->
+    <!--<where>-->
+      <!--<foreach collection="example.oredCriteria" item="criteria" separator="or">-->
+        <!--<if test="criteria.valid">-->
+          <!--<trim prefix="(" prefixOverrides="and" suffix=")">-->
+            <!--<foreach collection="criteria.criteria" item="criterion">-->
+              <!--<choose>-->
+                <!--<when test="criterion.noValue">-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when test="criterion.singleValue">-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when test="criterion.betweenValue">-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when test="criterion.listValue">-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Base_Column_List">-->
+    <!--id, special_or_class, buff_type, buff_num, ability_name, ability_type, ability_action_range, -->
+    <!--ability_desc, comment, remark, tag-->
+  <!--</sql>-->
+  <!--<select id="selectByExample" parameterType="czq.czqsole.domain.BuffExample" resultMap="BaseResultMap">-->
+    <!--select-->
+    <!--<if test="distinct">-->
+      <!--distinct-->
+    <!--</if>-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from buff-->
+    <!--<if test="_parameter != null">-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+    <!--<if test="orderByClause != null">-->
+      <!--order by ${orderByClause}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from buff-->
+    <!--where id = #{id,jdbcType=INTEGER}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+    <!--delete from buff-->
+    <!--where id = #{id,jdbcType=INTEGER}-->
+  <!--</delete>-->
+  <!--<delete id="deleteByExample" parameterType="czq.czqsole.domain.BuffExample">-->
+    <!--delete from buff-->
+    <!--<if test="_parameter != null">-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="czq.czqsole.domain.Buff">-->
+    <!--insert into buff (id, special_or_class, buff_type, -->
+      <!--buff_num, ability_name, ability_type, -->
+      <!--ability_action_range, ability_desc, comment, -->
+      <!--remark, tag)-->
+    <!--values (#{id,jdbcType=INTEGER}, #{specialOrClass,jdbcType=VARCHAR}, #{buffType,jdbcType=VARCHAR}, -->
+      <!--#{buffNum,jdbcType=INTEGER}, #{abilityName,jdbcType=VARCHAR}, #{abilityType,jdbcType=VARCHAR}, -->
+      <!--#{abilityActionRange,jdbcType=VARCHAR}, #{abilityDesc,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, -->
+      <!--#{remark,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="czq.czqsole.domain.Buff">-->
+    <!--insert into buff-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+      <!--<if test="id != null">-->
+        <!--id,-->
+      <!--</if>-->
+      <!--<if test="specialOrClass != null">-->
+        <!--special_or_class,-->
+      <!--</if>-->
+      <!--<if test="buffType != null">-->
+        <!--buff_type,-->
+      <!--</if>-->
+      <!--<if test="buffNum != null">-->
+        <!--buff_num,-->
+      <!--</if>-->
+      <!--<if test="abilityName != null">-->
+        <!--ability_name,-->
+      <!--</if>-->
+      <!--<if test="abilityType != null">-->
+        <!--ability_type,-->
+      <!--</if>-->
+      <!--<if test="abilityActionRange != null">-->
+        <!--ability_action_range,-->
+      <!--</if>-->
+      <!--<if test="abilityDesc != null">-->
+        <!--ability_desc,-->
+      <!--</if>-->
+      <!--<if test="comment != null">-->
+        <!--comment,-->
+      <!--</if>-->
+      <!--<if test="remark != null">-->
+        <!--remark,-->
+      <!--</if>-->
+      <!--<if test="tag != null">-->
+        <!--tag,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+      <!--<if test="id != null">-->
+        <!--#{id,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="specialOrClass != null">-->
+        <!--#{specialOrClass,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="buffType != null">-->
+        <!--#{buffType,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="buffNum != null">-->
+        <!--#{buffNum,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="abilityName != null">-->
+        <!--#{abilityName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="abilityType != null">-->
+        <!--#{abilityType,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="abilityActionRange != null">-->
+        <!--#{abilityActionRange,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="abilityDesc != null">-->
+        <!--#{abilityDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="comment != null">-->
+        <!--#{comment,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="remark != null">-->
+        <!--#{remark,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tag != null">-->
+        <!--#{tag,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<select id="countByExample" parameterType="czq.czqsole.domain.BuffExample" resultType="java.lang.Long">-->
+    <!--select count(*) from buff-->
+    <!--<if test="_parameter != null">-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<update id="updateByExampleSelective" parameterType="map">-->
+    <!--update buff-->
+    <!--<set>-->
+      <!--<if test="record.id != null">-->
+        <!--id = #{record.id,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="record.specialOrClass != null">-->
+        <!--special_or_class = #{record.specialOrClass,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.buffType != null">-->
+        <!--buff_type = #{record.buffType,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.buffNum != null">-->
+        <!--buff_num = #{record.buffNum,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="record.abilityName != null">-->
+        <!--ability_name = #{record.abilityName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.abilityType != null">-->
+        <!--ability_type = #{record.abilityType,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.abilityActionRange != null">-->
+        <!--ability_action_range = #{record.abilityActionRange,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.abilityDesc != null">-->
+        <!--ability_desc = #{record.abilityDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.comment != null">-->
+        <!--comment = #{record.comment,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.remark != null">-->
+        <!--remark = #{record.remark,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="record.tag != null">-->
+        <!--tag = #{record.tag,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--<if test="_parameter != null">-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByExample" parameterType="map">-->
+    <!--update buff-->
+    <!--set id = #{record.id,jdbcType=INTEGER},-->
+      <!--special_or_class = #{record.specialOrClass,jdbcType=VARCHAR},-->
+      <!--buff_type = #{record.buffType,jdbcType=VARCHAR},-->
+      <!--buff_num = #{record.buffNum,jdbcType=INTEGER},-->
+      <!--ability_name = #{record.abilityName,jdbcType=VARCHAR},-->
+      <!--ability_type = #{record.abilityType,jdbcType=VARCHAR},-->
+      <!--ability_action_range = #{record.abilityActionRange,jdbcType=VARCHAR},-->
+      <!--ability_desc = #{record.abilityDesc,jdbcType=VARCHAR},-->
+      <!--comment = #{record.comment,jdbcType=VARCHAR},-->
+      <!--remark = #{record.remark,jdbcType=VARCHAR},-->
+      <!--tag = #{record.tag,jdbcType=VARCHAR}-->
+    <!--<if test="_parameter != null">-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="czq.czqsole.domain.Buff">-->
+    <!--update buff-->
+    <!--<set>-->
+      <!--<if test="specialOrClass != null">-->
+        <!--special_or_class = #{specialOrClass,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="buffType != null">-->
+        <!--buff_type = #{buffType,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="buffNum != null">-->
+        <!--buff_num = #{buffNum,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="abilityName != null">-->
+        <!--ability_name = #{abilityName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="abilityType != null">-->
+        <!--ability_type = #{abilityType,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="abilityActionRange != null">-->
+        <!--ability_action_range = #{abilityActionRange,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="abilityDesc != null">-->
+        <!--ability_desc = #{abilityDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="comment != null">-->
+        <!--comment = #{comment,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="remark != null">-->
+        <!--remark = #{remark,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tag != null">-->
+        <!--tag = #{tag,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id,jdbcType=INTEGER}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="czq.czqsole.domain.Buff">-->
+    <!--update buff-->
+    <!--set special_or_class = #{specialOrClass,jdbcType=VARCHAR},-->
+      <!--buff_type = #{buffType,jdbcType=VARCHAR},-->
+      <!--buff_num = #{buffNum,jdbcType=INTEGER},-->
+      <!--ability_name = #{abilityName,jdbcType=VARCHAR},-->
+      <!--ability_type = #{abilityType,jdbcType=VARCHAR},-->
+      <!--ability_action_range = #{abilityActionRange,jdbcType=VARCHAR},-->
+      <!--ability_desc = #{abilityDesc,jdbcType=VARCHAR},-->
+      <!--comment = #{comment,jdbcType=VARCHAR},-->
+      <!--remark = #{remark,jdbcType=VARCHAR},-->
+      <!--tag = #{tag,jdbcType=VARCHAR}-->
+    <!--where id = #{id,jdbcType=INTEGER}-->
+  <!--</update>-->
 </mapper>
